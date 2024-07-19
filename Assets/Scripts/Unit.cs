@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour
     public Text text_hp;
 
     public GameObject Contours;
+    public GameObject Skills;
 
     private float current_health;
     private int turn;
@@ -40,11 +41,14 @@ public class Unit : MonoBehaviour
 
     public void UnitOnClick(){
         Contours.SetActive(true);
+        Skills.SetActive(true);
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
-        Debug.Log("You hit me");
+    public void UnitUnclick(){
+        Skills.SetActive(false);
+        Contours.SetActive(false);
     }
+
 
 
     public void Death(){

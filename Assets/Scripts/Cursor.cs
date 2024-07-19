@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
+    private Unit LastUnit;
 
     private void Update() {
         if(Input.GetMouseButtonDown(0)){
@@ -14,8 +15,12 @@ public class Cursor : MonoBehaviour
 
     private void CheckForUnits(){
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit)){
-            Debug.Log("" + hit.collider.gameObject.name);
+        if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.TryGetComponent(out Unit unit)){
+            if (LastUnit!=null && LastUnit!=unit){
+                LastUnit.UnitUnclick();
+            }
+            unit.UnitOnClick();
+            LastUnit=unit;
         }
     }
 }
