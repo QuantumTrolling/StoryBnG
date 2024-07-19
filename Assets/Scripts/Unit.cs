@@ -1,58 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] public bool isEnemy;
-    [SerializeField] public float Max_health;
-    [SerializeField] public int speed;
-    public Text text_turn;
-    public Text text_hp;
-
-    public GameObject Contours;
-    public GameObject Skills;
-
-    private float current_health;
+    [SerializeField] private bool isEnemy;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private int speed;
+    private float currentHealth;
     private int turn;
 
-    private void Start() {
-        current_health = Max_health;
+    public bool IsEnemy { get { return isEnemy; } }
+    public float MaxHealth { get { return maxHealth; } }
+    public int Speed { get { return speed; } }
+    public float CurrentHealth { get { return currentHealth; } }
+    public int Turn { get { return turn; } }
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
     }
 
-    private void Update() {
-        text_hp.text = "" + current_health;
-    }
-
-    public void TakeDamage(float damage){
-        current_health=-damage;
-        if (current_health <= 0){
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
             Death();
         }
     }
-    public void SetTurn(int setturn){
 
-        text_turn.text = "" + setturn;
-        turn = setturn;
+    public void SetTurn(int setTurn)
+    {
+        turn = setTurn;
     }
 
-    public void UnitOnClick(){
-        Contours.SetActive(true);
-        Skills.SetActive(true);
-    }
-
-    public void UnitUnclick(){
-        Skills.SetActive(false);
-        Contours.SetActive(false);
-    }
-
-
-
-    public void Death(){
+    private void Death()
+    {
         Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        
     }
 
 }

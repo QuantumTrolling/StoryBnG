@@ -13,10 +13,10 @@ public class UnitManipulait : MonoBehaviour
 
 
     private int SortbySpeed(Unit f, Unit s){
-        if (f.speed > s.speed){
+        if (f.Speed > s.Speed){
             return -1;
         }
-        else if (f.speed < s.speed){
+        else if (f.Speed < s.Speed){
             return 1;
         }
         return 0;
