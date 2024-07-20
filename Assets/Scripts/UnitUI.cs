@@ -11,7 +11,8 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private TMP_Text textHp;
     [SerializeField] private GameObject skills;
     [SerializeField] private Image healthBar;
-    [SerializeField] private UnitsManagement unitsManagement; 
+    [SerializeField] private UnitsManagement unitsManagement;
+    [SerializeField] private GameObject selection;
 
     private float maxHealth;
 
@@ -24,12 +25,14 @@ public class UnitUI : MonoBehaviour
 
     public void UnitOnClick()
     {
-        
+        selection.SetActive(true);
+        skills.SetActive(true);
     }
 
     public void UnitUnclick()
     {
-        
+        selection.SetActive(false);
+        skills.SetActive(false);
     }
 
     public void UnitOnSkillButtonClick()
@@ -40,7 +43,7 @@ public class UnitUI : MonoBehaviour
             Unit enemyUnit = enemy.GetComponent<Unit>();
             if (enemyUnit != null)
             {
-                enemyUnit.TakeDamage(10); 
+                enemyUnit.TakeDamage(10);
             }
         }
         unitsManagement.NextTurn();
@@ -56,11 +59,15 @@ public class UnitUI : MonoBehaviour
 
         if (unit.Turn == 1)
         {
-            skills.SetActive(true);
+            foreach (Transform button in skills.GetComponentInChildren<Transform>()){
+                button.GetComponent<Button>().interactable = true;
+            }
         }
         else
         {
-            skills.SetActive(false);
+             foreach (Transform button in skills.GetComponentInChildren<Transform>()){
+                button.GetComponent<Button>().interactable = false;
+            }
         }
 
     }
