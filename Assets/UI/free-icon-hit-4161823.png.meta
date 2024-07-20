@@ -226,7 +226,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      free-icon-hit-4161823_0: -1602515657967708427
+      free-icon-hit-4161823_1: 5390646987127660516
+      free-icon-hit-4161823_2: -6915320355265340502
+      free-icon-hit-4161823_3: 5011340772315671406
+      free-icon-hit-4161823_4: 8208934632377613380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

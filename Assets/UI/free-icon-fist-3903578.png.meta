@@ -538,7 +538,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      free-icon-fist-3903578_0: 3126498995109847803
+      free-icon-fist-3903578_1: -4650844595718206203
+      free-icon-fist-3903578_10: -285595717986198009
+      free-icon-fist-3903578_11: -4277148502635172233
+      free-icon-fist-3903578_12: -1344113411370201263
+      free-icon-fist-3903578_13: -5832268660170734146
+      free-icon-fist-3903578_14: -2713337003616322486
+      free-icon-fist-3903578_15: -2982840445267265583
+      free-icon-fist-3903578_16: -5909258456727612679
+      free-icon-fist-3903578_17: 1319536008956358117
+      free-icon-fist-3903578_2: 4762867059722272523
+      free-icon-fist-3903578_3: -4460940714610050115
+      free-icon-fist-3903578_4: -5581919979870344303
+      free-icon-fist-3903578_5: 1451253733915821132
+      free-icon-fist-3903578_6: 4350906727590233822
+      free-icon-fist-3903578_7: 97377210255116479
+      free-icon-fist-3903578_8: 902666836856423123
+      free-icon-fist-3903578_9: -1282678879615615584
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
