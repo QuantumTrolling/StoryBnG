@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      free-icon-rhombus-12133470_0: 7572959216754075623
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
