@@ -9,6 +9,9 @@ public class Unit : MonoBehaviour
     [SerializeField] private bool isEnemy;
     [SerializeField] private float maxHealth;
     [SerializeField] private int speed;
+    [SerializeField] private Skill skill;
+
+    private List<string> statuses = new List<string>();
     private float currentHealth;
     private int turn;
 
@@ -17,6 +20,8 @@ public class Unit : MonoBehaviour
     public int Speed { get { return speed; } }
     public float CurrentHealth { get { return currentHealth; } }
     public int Turn { get { return turn; } }
+    public Skill Skill { get { return skill; } }
+    public List<string> Statuses { get { return statuses; } }
 
     private void Start()
     {
@@ -31,10 +36,30 @@ public class Unit : MonoBehaviour
             Death();
         }
     }
+    public void Heal(float amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+    }
 
     public void SetTurn(int setTurn)
     {
         turn = setTurn;
+    }
+
+    public void AddStatus(string status)
+    {
+        if (!statuses.Contains(status))
+        {
+            statuses.Add(status);
+        }
+    }
+
+    public void RemoveStatus(string status)
+    {
+        if (statuses.Contains(status))
+        {
+            statuses.Remove(status);
+        }
     }
 
     private void Death()

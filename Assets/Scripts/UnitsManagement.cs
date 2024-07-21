@@ -5,16 +5,17 @@ using UnityEngine;
 public class UnitsManagement : MonoBehaviour
 {
     public List<Unit> units = new List<Unit>();
-    private int currentUnitIndex = 0;
+    public Unit CurrentUnit => units[currentUnitIndex];
+    public int currentUnitIndex = 0;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         SortUnitsBySpeed();
         SetTurnOrder();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (units[currentUnitIndex].CurrentHealth <= 0)
@@ -47,6 +48,38 @@ public class UnitsManagement : MonoBehaviour
             }
         }
         currentUnitIndex = units.FindIndex(unit => unit.Turn == 1);
+
+        if (units[currentUnitIndex].IsEnemy)
+        {
+            ExecuteEnemyTurn();
+        }
+
+    }
+
+    private void ExecuteEnemyTurn()
+    {
+        Unit target = GetUnitWithLowestHealth();
+        if (target != null)
+        {
+            units[currentUnitIndex].Skill.Activate(target);
+        }
+        NextTurn();
+    }
+
+    public Unit GetUnitWithLowestHealth()
+    {
+        Unit lowestHealthUnit = null;
+        float lowestHealth = float.MaxValue;
+
+        foreach (Unit unit in units)
+        {
+            if (!unit.IsEnemy && unit.CurrentHealth < lowestHealth)
+            {
+                lowestHealth = unit.CurrentHealth;
+                lowestHealthUnit = unit;
+            }
+        }
+        return lowestHealthUnit;
     }
 
 

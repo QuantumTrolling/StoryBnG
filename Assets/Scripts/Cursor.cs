@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    private UnitUI LastUnitUI;
+    private static UnitUI LastUnitUI;
+    public static Unit LastUnit;
+    public UnitsManagement unitsManagement;
+
 
     private void Update() {
         if(Input.GetMouseButtonDown(0)){
@@ -14,13 +17,18 @@ public class Cursor : MonoBehaviour
     }
 
     private void CheckForUnits(){
+        Debug.Log(LastUnit);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.TryGetComponent(out UnitUI unit)){
-            if (LastUnitUI!=null && LastUnitUI!=unit){
-                LastUnitUI.UnitUnclick();
+        if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.TryGetComponent(out UnitUI unitUI)){
+            Unit currentUnit = unitsManagement.units[unitsManagement.currentUnitIndex];
+            if (LastUnitUI!=null && LastUnitUI!=unitUI){
+                currentUnit.GetComponent<UnitUI>().UnitUn—lickSkills();
+                LastUnitUI.UnitUnClick();
             }
-            unit.UnitOnClick();
-            LastUnitUI=unit;
+            LastUnitUI = unitUI;
+            currentUnit.GetComponent<UnitUI>().UnitOnClickSkills();
+            LastUnitUI.UnitOnClick();
+            LastUnit = hit.collider.gameObject.GetComponent<Unit>();
         }
     }
 }

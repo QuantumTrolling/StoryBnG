@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Assertions.Must;
 
 public class UnitUI : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private UnitsManagement unitsManagement;
     [SerializeField] private GameObject selection;
+    [SerializeField] private Transform statusPanel;
+    [SerializeField] private GameObject statusIconPrefab;
 
     private float maxHealth;
+    private Dictionary<string, GameObject> statusIcons = new Dictionary<string, GameObject>();
 
     private void Start()
     {
@@ -23,53 +27,83 @@ public class UnitUI : MonoBehaviour
 
     
 
+
+    public void UnitOnClickSkills()
+    {
+        if (!unit.IsEnemy)
+        {
+            skills.SetActive(true);
+        }
+    }
+
     public void UnitOnClick()
     {
         selection.SetActive(true);
-        skills.SetActive(true);
     }
-
-    public void UnitUnclick()
+    public void UnitUnClick()
     {
         selection.SetActive(false);
-        skills.SetActive(false);
+    }
+
+    public void UnitUn—lickSkills()
+    {
+        selection.SetActive(false);
+        if (!unit.IsEnemy)
+        {
+            skills.SetActive(false);
+        }
     }
 
     public void UnitOnSkillButtonClick()
     {
-        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemy != null)
+        if (unitsManagement.CurrentUnit == unit)
         {
-            Unit enemyUnit = enemy.GetComponent<Unit>();
-            if (enemyUnit != null)
+            Unit target = Cursor.LastUnit;
+            if (target != null)
             {
-                enemyUnit.TakeDamage(10);
+                unit.Skill.Activate(target);
+            }
+            unitsManagement.NextTurn();
+        }
+    }
+
+    private void UpdateStatusIcons()
+    {
+        foreach (string status in unit.Statuses)
+        {
+            if (!statusIcons.ContainsKey(status))
+            {
+                GameObject icon = Instantiate(statusIconPrefab, statusPanel);
+                statusIcons[status] = icon;
             }
         }
-        unitsManagement.NextTurn();
+
+        List<string> statusesToRemove = new List<string>();
+        foreach (string status in statusIcons.Keys)
+        {
+            if (!unit.Statuses.Contains(status))
+            {
+                Destroy(statusIcons[status]);
+                statusesToRemove.Add(status);
+            }
+        }
+
+        foreach (string status in statusesToRemove)
+        {
+            statusIcons.Remove(status);
+        }
     }
+
 
     public void Update()
     {
-        Debug.Log("Updating UI for unit " + unit.name + " his turn is: " + unit.Turn);
-
-        textHp.text = unit.CurrentHealth.ToString();
+        UpdateStatusIcons();
+        int displayHealth = (int)System.Math.Round(unit.CurrentHealth);
+        textHp.text = displayHealth.ToString();
         textTurn.text = unit.Turn.ToString();
         healthBar.fillAmount = unit.CurrentHealth / maxHealth;
 
-        if (unit.Turn == 1)
-        {
-            foreach (Transform button in skills.GetComponentInChildren<Transform>()){
-                button.GetComponent<Button>().interactable = true;
-            }
-        }
-        else
-        {
-             foreach (Transform button in skills.GetComponentInChildren<Transform>()){
-                button.GetComponent<Button>().interactable = false;
-            }
-        }
-
+        
     }
 
 
