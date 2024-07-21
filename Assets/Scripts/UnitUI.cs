@@ -45,7 +45,7 @@ public class UnitUI : MonoBehaviour
         selection.SetActive(false);
     }
 
-    public void UnitUn—lickSkills()
+    public void UnitUnClickSkills()
     {
         selection.SetActive(false);
         if (!unit.IsEnemy)

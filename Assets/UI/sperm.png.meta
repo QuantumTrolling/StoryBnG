@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sperm_0: 4872412497678956148
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      free-icon-arrow-5257641_0: 9093373637518426111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

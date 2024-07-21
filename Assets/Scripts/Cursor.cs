@@ -22,7 +22,7 @@ public class Cursor : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.TryGetComponent(out UnitUI unitUI)){
             Unit currentUnit = unitsManagement.units[unitsManagement.currentUnitIndex];
             if (LastUnitUI!=null && LastUnitUI!=unitUI){
-                currentUnit.GetComponent<UnitUI>().UnitUn—lickSkills();
+                currentUnit.GetComponent<UnitUI>().UnitUnClickSkills();
                 LastUnitUI.UnitUnClick();
             }
             LastUnitUI = unitUI;

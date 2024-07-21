@@ -154,7 +154,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      free-icon-poison-620824 (1)_0: -8834930464251548019
+      free-icon-poison-620824 (1)_1: 6328054872688407589
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
