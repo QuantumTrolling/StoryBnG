@@ -26,7 +26,6 @@ public class Cursor : MonoBehaviour
                 LastUnitUI.UnitUnClick();
             }
             LastUnitUI = unitUI;
-            currentUnit.GetComponent<UnitUI>().UnitOnClickSkills();
             LastUnitUI.UnitOnClick();
             LastUnit = hit.collider.gameObject.GetComponent<Unit>();
         }

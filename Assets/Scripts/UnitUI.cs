@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Assertions.Must;
+using Unity.VisualScripting;
 
 public class UnitUI : MonoBehaviour
 {
@@ -25,8 +26,6 @@ public class UnitUI : MonoBehaviour
         maxHealth = unit.MaxHealth;
     }
 
-    
-
 
     public void UnitOnClickSkills()
     {
@@ -39,6 +38,7 @@ public class UnitUI : MonoBehaviour
     public void UnitOnClick()
     {
         selection.SetActive(true);
+        
     }
     public void UnitUnClick()
     {
@@ -62,8 +62,9 @@ public class UnitUI : MonoBehaviour
             if (target != null)
             {
                 unit.Skill.Activate(target);
+                unitsManagement.NextTurn();
+                UnitUnClickSkills();
             }
-            unitsManagement.NextTurn();
         }
     }
 
@@ -97,6 +98,9 @@ public class UnitUI : MonoBehaviour
 
     public void Update()
     {
+        if (unit.Turn == 1){
+            UnitOnClickSkills();
+        }
         UpdateStatusIcons();
         int displayHealth = (int)System.Math.Round(unit.CurrentHealth);
         textHp.text = displayHealth.ToString();

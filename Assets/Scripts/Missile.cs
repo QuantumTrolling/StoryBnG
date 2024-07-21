@@ -27,6 +27,7 @@ public class Missile : MonoBehaviour
             {
                 target.TakeDamage(damage);
                 Destroy(gameObject);
+                target = null;
             }
         }
         else
