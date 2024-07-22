@@ -11,7 +11,7 @@ public class Cursor : MonoBehaviour
 
 
     private void Update() {
-        if(Input.GetMouseButtonDown(0)){
+        if(GameManager.Instance.CurrentState == GameState.Battle && Input.GetMouseButtonDown(0)){
             CheckForUnits();
         }
     }

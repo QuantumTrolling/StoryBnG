@@ -8,20 +8,25 @@ public class UnitsManagement : MonoBehaviour
     public Unit CurrentUnit => units[currentUnitIndex];
     public int currentUnitIndex = 0;
 
-
     void Start()
     {
-        SortUnitsBySpeed();
-        SetTurnOrder();
-    }
 
+    }
 
     void Update()
     {
+        if (GameManager.Instance.CurrentState == GameState.Preparation) { return; }
+        if (GameManager.Instance.CurrentState == GameState.Battle) { StartScript(); }
         if (units[currentUnitIndex].CurrentHealth <= 0)
         {
             NextTurn();
         }
+    }
+
+    public void StartScript()
+    {
+        SortUnitsBySpeed();
+        SetTurnOrder();
     }
 
     private void SortUnitsBySpeed()
@@ -53,7 +58,6 @@ public class UnitsManagement : MonoBehaviour
         {
             ExecuteEnemyTurn();
         }
-
     }
 
     private void ExecuteEnemyTurn()
@@ -82,5 +86,19 @@ public class UnitsManagement : MonoBehaviour
         return lowestHealthUnit;
     }
 
+    public void AddUnit(Unit unit)
+    {
+        if (!units.Contains(unit))
+        {
+            units.Add(unit);
+        }
+    }
 
+    public void RemoveUnit(Unit unit)
+    {
+        if (units.Contains(unit))
+        {
+            units.Remove(unit);
+        }
+    }
 }
