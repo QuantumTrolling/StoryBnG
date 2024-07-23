@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.Assertions.Must;
-using Unity.VisualScripting;
 
 public class UnitUI : MonoBehaviour
 {
@@ -13,16 +11,13 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private TMP_Text textHp;
     [SerializeField] private GameObject skills;
     [SerializeField] private Image healthBar;
-    [SerializeField] private UnitsManagement unitsManagement;
     [SerializeField] private GameObject selection;
     [SerializeField] private Transform statusPanel;
     [SerializeField] private GameObject statusIconPrefab;
     [SerializeField] private GameObject IconPrefab;
-    [SerializeField] private UnitSelection unitSelection;
 
     //объекты до входа в бой
     public Transform OccupiedArea;
-
 
     private float maxHealth;
     private Dictionary<string, GameObject> statusIcons = new Dictionary<string, GameObject>();
@@ -31,7 +26,6 @@ public class UnitUI : MonoBehaviour
     {
         maxHealth = unit.MaxHealth;
     }
-
 
     public void UnitOnClickSkills()
     {
@@ -44,8 +38,8 @@ public class UnitUI : MonoBehaviour
     public void UnitOnClick()
     {
         selection.SetActive(true);
-        
     }
+
     public void UnitUnClick()
     {
         selection.SetActive(false);
@@ -62,15 +56,30 @@ public class UnitUI : MonoBehaviour
 
     public void UnitOnSkillButtonClick()
     {
-        if (unitsManagement.CurrentUnit == unit)
+        if (UnitsManagement.Instance.CurrentUnit == unit)
         {
             Unit target = Cursor.LastUnit;
             if (target != null)
             {
-                unit.Skill.Activate(target);
-                unitsManagement.NextTurn();
-                UnitUnClickSkills();
+                if (unit.Skill != null)
+                {
+                    unit.Skill.Activate(target);
+                    UnitsManagement.Instance.NextTurn();
+                    UnitUnClickSkills();
+                }
+                else
+                {
+                    Debug.LogError("Skill is null for unit: " + unit.name);
+                }
             }
+            else
+            {
+                Debug.LogError("Target unit is null");
+            }
+        }
+        else
+        {
+            Debug.LogError("Current unit is not the same as this unit");
         }
     }
 
@@ -105,9 +114,8 @@ public class UnitUI : MonoBehaviour
     {
         if (GameManager.Instance.CurrentState == GameState.Preparation)
         {
-            Debug.Log(unit);
-            unitSelection.RemoveUnit(unit, OccupiedArea);
-            unitSelection.PlaceUnitIcon(IconPrefab);
+            UnitSelection.Instance.RemoveUnit(unit, OccupiedArea);
+            UnitSelection.Instance.PlaceUnitIcon(IconPrefab);
             Destroy(this.gameObject);
         }
         else
@@ -118,7 +126,8 @@ public class UnitUI : MonoBehaviour
 
     public void Update()
     {
-        if (unit.Turn == 1){
+        if (unit.Turn == 1)
+        {
             UnitOnClickSkills();
         }
         UpdateStatusIcons();
@@ -126,10 +135,5 @@ public class UnitUI : MonoBehaviour
         textHp.text = displayHealth.ToString();
         textTurn.text = unit.Turn.ToString();
         healthBar.fillAmount = unit.CurrentHealth / maxHealth;
-
-        
     }
-
-
-
 }

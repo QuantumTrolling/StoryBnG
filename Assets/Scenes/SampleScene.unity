@@ -593,7 +593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa894e45d38c5b148928c2f2d3734003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitsManagement: {fileID: 846848595}
+  selectedUnits: []
+  MaxUnitsSelected: 3
+  occupiedDropAreas: []
 --- !u!224 &386199086 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3119740033167852619, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
@@ -662,7 +664,6 @@ MonoBehaviour:
   statusPanel: {fileID: 822325077}
   statusIconPrefab: {fileID: 9152535223639472926, guid: 553c3cd8ecc0b1349ac4b905952cdf42, type: 3}
   IconPrefab: {fileID: 0}
-  unitSelection: {fileID: 0}
   OccupiedArea: {fileID: 0}
 --- !u!65 &451206587
 BoxCollider:
@@ -3355,6 +3356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2c3e067450d0948af1388bbdcd4e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units:
+  - {fileID: 451206590}
   currentUnitIndex: 0
 --- !u!1 &851618619
 GameObject:
@@ -5530,7 +5533,7 @@ PrefabInstance:
     - target: {fileID: 5560300808480849087, guid: 8f8f946336382c34b903829a11437052, type: 3}
       propertyPath: unitSelection
       value: 
-      objectReference: {fileID: 331883685}
+      objectReference: {fileID: 0}
     - target: {fileID: 5560300808480849087, guid: 8f8f946336382c34b903829a11437052, type: 3}
       propertyPath: dropAreas.Array.size
       value: 0
@@ -5547,7 +5550,9 @@ PrefabInstance:
       propertyPath: 'dropAreas.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6311450287952575137, guid: 8f8f946336382c34b903829a11437052, type: 3}
+    - {fileID: 3382548524098774421, guid: 8f8f946336382c34b903829a11437052, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5651,7 +5656,7 @@ PrefabInstance:
     - target: {fileID: 5720966181302841762, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
       propertyPath: unitSelection
       value: 
-      objectReference: {fileID: 331883685}
+      objectReference: {fileID: 0}
     - target: {fileID: 5720966181302841762, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
       propertyPath: dropAreas.Array.size
       value: 0
@@ -5684,7 +5689,9 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 30
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6524239169753604847, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
+    - {fileID: 6465710223547168644, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5708,7 +5715,7 @@ PrefabInstance:
     - target: {fileID: 2111633573484145772, guid: b169bb9f487324541af880064fe4a1f4, type: 3}
       propertyPath: unitSelection
       value: 
-      objectReference: {fileID: 331883685}
+      objectReference: {fileID: 0}
     - target: {fileID: 2111633573484145772, guid: b169bb9f487324541af880064fe4a1f4, type: 3}
       propertyPath: dropAreas.Array.size
       value: 0
@@ -5821,7 +5828,8 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 30
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3392829346054147636, guid: b169bb9f487324541af880064fe4a1f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

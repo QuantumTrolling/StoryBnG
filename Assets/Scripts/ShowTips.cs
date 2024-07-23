@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-/*
+
 public class ShowTips : MonoBehaviour
 {
     [SerializeField] GameObject tips;
 
-    private void Start() {
+    /*private void Start() {
         tips.SetActive(false);
     }
 
@@ -22,7 +22,6 @@ public class ShowTips : MonoBehaviour
 
     private void OnMouseExit() {
         tips.SetActive(false);
-    }
+    }*/
 
 }
-*/

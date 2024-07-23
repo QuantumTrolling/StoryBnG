@@ -539,7 +539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.66, y: -1.9}
+  m_AnchoredPosition: {x: -0.09, y: 0.89}
   m_SizeDelta: {x: 914.69, y: 235.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3621695116118349251
@@ -828,8 +828,6 @@ GameObject:
   - component: {fileID: 4682073821623955581}
   - component: {fileID: 1059190669178056865}
   - component: {fileID: 5847063702091972084}
-  - component: {fileID: 4647775734290520877}
-  - component: {fileID: 5529190842071920362}
   m_Layer: 0
   m_Name: DenisUnit
   m_TagString: Untagged
@@ -965,12 +963,11 @@ MonoBehaviour:
   textHp: {fileID: 8939985750546266127}
   skills: {fileID: 3271531784960274769}
   healthBar: {fileID: 3133447741974160683}
-  unitsManagement: {fileID: 0}
   selection: {fileID: 2854643959178896256}
   statusPanel: {fileID: 4511164991828869266}
   statusIconPrefab: {fileID: 9152535223639472926, guid: 553c3cd8ecc0b1349ac4b905952cdf42, type: 3}
   IconPrefab: {fileID: 7534246385275615534, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
-  unitSelection: {fileID: 4647775734290520877}
+  OccupiedArea: {fileID: 0}
 --- !u!114 &5847063702091972084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,30 +984,3 @@ MonoBehaviour:
   cooldown: 0
   missilePrefab: {fileID: 53767665710334262, guid: 29f8181575d9d434b9524f78e5025679, type: 3}
   damage: 5
---- !u!114 &4647775734290520877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675817023207768475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa894e45d38c5b148928c2f2d3734003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitsManagement: {fileID: 5529190842071920362}
---- !u!114 &5529190842071920362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675817023207768475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb2c3e067450d0948af1388bbdcd4e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  units: []
-  currentUnitIndex: 0

@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class UnitSelection : MonoBehaviour
 {
-    public static List<Unit> selectedUnits = new List<Unit>();
-    [SerializeField] private UnitsManagement unitsManagement;
-    public static int MaxUnitsSelected = 3;
+    public static UnitSelection Instance { get; private set; }
+    public List<Unit> selectedUnits = new List<Unit>();
+    public int MaxUnitsSelected = 3;
     private GameObject Canvas;
-    private List<Transform> occupiedDropAreas = new List<Transform>();
+    public List<Transform> occupiedDropAreas = new List<Transform>();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -17,18 +30,43 @@ public class UnitSelection : MonoBehaviour
 
     public void PlaceUnit(GameObject unitPrefab, Transform dropArea, Vector2 coordinates)
     {
+        if (unitPrefab == null || dropArea == null)
+        {
+            Debug.LogError("unitPrefab or dropArea is null");
+            return;
+        }
+
         Vector2 realCoordinates = Camera.main.ScreenToWorldPoint(coordinates);
         GameObject newUnit = Instantiate(unitPrefab, Canvas.transform);
         newUnit.transform.position = realCoordinates;
-        newUnit.GetComponent<UnitUI>().OccupiedArea = dropArea;
+
+        UnitUI unitUI = newUnit.GetComponent<UnitUI>();
+        if (unitUI != null)
+        {
+            unitUI.OccupiedArea = dropArea;
+        }
+        else
+        {
+            Debug.LogError("UnitUI component is missing on the instantiated unit");
+        }
+
         Transform newUnitTransform = newUnit.GetComponent<Transform>();
         if (newUnitTransform != null)
         {
             newUnitTransform.localScale = new Vector3(216, 216, 216);
         }
+
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
-        selectedUnits.Add(newUnitComponent);
-        unitsManagement.AddUnit(newUnitComponent);
+        if (newUnitComponent != null)
+        {
+            selectedUnits.Add(newUnitComponent);
+            UnitsManagement.Instance.AddUnit(newUnitComponent);
+        }
+        else
+        {
+            Debug.LogError("Unit component is missing on the instantiated unit");
+        }
+
         if (!occupiedDropAreas.Contains(dropArea))
         {
             occupiedDropAreas.Add(dropArea);
@@ -37,6 +75,12 @@ public class UnitSelection : MonoBehaviour
 
     public void PlaceUnitIcon(GameObject unitIconPrefab)
     {
+        if (unitIconPrefab == null)
+        {
+            Debug.LogError("unitIconPrefab is null");
+            return;
+        }
+
         GameObject[] prefabPanels = GameObject.FindGameObjectsWithTag("PanelIcon");
 
         // Сортируем панели по Y-координате
@@ -48,11 +92,18 @@ public class UnitSelection : MonoBehaviour
             {
                 GameObject newUnitIcon = Instantiate(unitIconPrefab, panel.transform);
                 RectTransform newUnitIconRectTransform = newUnitIcon.GetComponent<RectTransform>();
-                newUnitIconRectTransform.anchoredPosition = Vector2.zero;
-                newUnitIconRectTransform.localScale = Vector3.one;
-                newUnitIconRectTransform.anchorMin = new Vector2(0, 0);
-                newUnitIconRectTransform.anchorMax = new Vector2(0, 0);
-                newUnitIconRectTransform.pivot = new Vector2(0, 0);
+                if (newUnitIconRectTransform != null)
+                {
+                    newUnitIconRectTransform.anchoredPosition = Vector2.zero;
+                    newUnitIconRectTransform.localScale = Vector3.one;
+                    newUnitIconRectTransform.anchorMin = new Vector2(0, 0);
+                    newUnitIconRectTransform.anchorMax = new Vector2(0, 0);
+                    newUnitIconRectTransform.pivot = new Vector2(0, 0);
+                }
+                else
+                {
+                    Debug.LogError("RectTransform component is missing on the instantiated unit icon");
+                }
                 return;
             }
         }
@@ -65,15 +116,21 @@ public class UnitSelection : MonoBehaviour
 
     public void RemoveUnit(Unit unit, Transform dropArea)
     {
+        if (unit == null || dropArea == null)
+        {
+            Debug.LogError("unit or dropArea is null");
+            return;
+        }
+
         selectedUnits.Remove(unit);
-        unitsManagement.RemoveUnit(unit);
+        UnitsManagement.Instance.RemoveUnit(unit);
         if (occupiedDropAreas.Contains(dropArea))
         {
             occupiedDropAreas.Remove(dropArea);
         }
     }
 
-    public static bool IsAllUnitsSelected()
+    public bool IsAllUnitsSelected()
     {
         return selectedUnits.Count == MaxUnitsSelected;
     }

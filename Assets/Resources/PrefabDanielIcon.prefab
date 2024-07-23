@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 7008110557591010916}
   - component: {fileID: 8580238895034110355}
   - component: {fileID: 5560300808480849087}
-  - component: {fileID: 6311450287952575137}
-  - component: {fileID: 3382548524098774421}
   m_Layer: 5
   m_Name: PrefabDanielIcon
   m_TagString: Untagged
@@ -106,34 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 1715109760345805963, guid: 5b135ae8a6584e242a8c9b7e38f6dddb, type: 3}
   dropAreas: []
-  unitSelection: {fileID: 6311450287952575137}
---- !u!114 &6311450287952575137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511754011265613126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa894e45d38c5b148928c2f2d3734003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitsManagement: {fileID: 3382548524098774421}
---- !u!114 &3382548524098774421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511754011265613126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb2c3e067450d0948af1388bbdcd4e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  units: []
-  currentUnitIndex: 0
 --- !u!1 &5450134501920290714
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
 
     public void StartBattle()
     {
-        if (UnitSelection.IsAllUnitsSelected())
+        if (UnitSelection.Instance.IsAllUnitsSelected())
         {
             CurrentState = GameState.Battle;
             uiManager.DestroyPreparationUI();
-            UnitsManagement.StartScript();
+            UnitsManagement.Instance.StartScript();
         }
         else
         {

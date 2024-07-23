@@ -11,14 +11,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup canvasGroup;
     public GameObject unitPrefab;
     public List<RectTransform> dropAreas;
-    public UnitSelection unitSelection;
     private Vector2 originalPosition;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        originalPosition = transform.position;
     }
 
     private void Start()
@@ -39,17 +37,26 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentState == GameState.Battle)
+        {
+            return;
+        }
         rectTransform.anchoredPosition += eventData.delta / canvasGroup.transform.localScale.x;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        originalPosition = rectTransform.anchoredPosition;
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentState == GameState.Battle)
+        {
+            return;
+        }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
@@ -57,9 +64,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(dropArea, Input.mousePosition, Camera.main))
             {
-                if (unitSelection.IsSlotFree(dropArea))
+                if (UnitSelection.Instance.IsSlotFree(dropArea))
                 {
-                    unitSelection.PlaceUnit(unitPrefab, dropArea, eventData.position);
+                    UnitSelection.Instance.PlaceUnit(unitPrefab, dropArea, eventData.position);
                     if (this.gameObject.name.Contains("Icon"))
                     {
                         Destroy(this.gameObject);
@@ -69,9 +76,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             }
         }
         rectTransform.anchoredPosition = originalPosition;
-        rectTransform.pivot = new Vector2(0, 0);
     }
-
 
     public void OnPointerDown(PointerEventData eventData)
     {

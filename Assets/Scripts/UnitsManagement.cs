@@ -4,9 +4,23 @@ using UnityEngine;
 
 public class UnitsManagement : MonoBehaviour
 {
-    public static List<Unit> units = new List<Unit>();
+    public static UnitsManagement Instance { get; private set; }
+    public List<Unit> units = new List<Unit>();
     public Unit CurrentUnit => units.Count > 0 && currentUnitIndex >= 0 && currentUnitIndex < units.Count ? units[currentUnitIndex] : null;
     public int currentUnitIndex = 0;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -25,18 +39,18 @@ public class UnitsManagement : MonoBehaviour
         }
     }
 
-    public static void StartScript()
+    public void StartScript()
     {
         SortUnitsBySpeed();
         SetTurnOrder();
     }
 
-    private static void SortUnitsBySpeed()
+    private void SortUnitsBySpeed()
     {
         units.Sort((a, b) => b.Speed.CompareTo(a.Speed));
     }
 
-    private static void SetTurnOrder()
+    private void SetTurnOrder()
     {
         for (int i = 0; i < units.Count; i++)
         {

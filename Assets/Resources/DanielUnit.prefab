@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -339, y: 0.000013351}
+  m_AnchoredPosition: {x: 264, y: 0.000013351}
   m_SizeDelta: {x: 168.33, y: 158.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8776511102237616004
@@ -226,7 +226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.49, y: -1.89}
+  m_AnchoredPosition: {x: -1.27, y: 1.26}
   m_SizeDelta: {x: 914.69, y: 235.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1715109760345805963
@@ -243,8 +243,6 @@ GameObject:
   - component: {fileID: 8855199235671377235}
   - component: {fileID: 8352053286918128702}
   - component: {fileID: 8791913502644559601}
-  - component: {fileID: 5928413522469323372}
-  - component: {fileID: 7119247070606331095}
   m_Layer: 0
   m_Name: DanielUnit
   m_TagString: Untagged
@@ -380,12 +378,11 @@ MonoBehaviour:
   textHp: {fileID: 8631109849479905836}
   skills: {fileID: 1659216873829033177}
   healthBar: {fileID: 8599575092380665665}
-  unitsManagement: {fileID: 0}
   selection: {fileID: 3457696631363362980}
   statusPanel: {fileID: 1547837366879236330}
   statusIconPrefab: {fileID: 9152535223639472926, guid: 553c3cd8ecc0b1349ac4b905952cdf42, type: 3}
   IconPrefab: {fileID: 1511754011265613126, guid: 8f8f946336382c34b903829a11437052, type: 3}
-  unitSelection: {fileID: 5928413522469323372}
+  OccupiedArea: {fileID: 0}
 --- !u!114 &8791913502644559601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,33 +399,6 @@ MonoBehaviour:
   cooldown: 0
   damageOverTime: 2
   duration: 5
---- !u!114 &5928413522469323372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715109760345805963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa894e45d38c5b148928c2f2d3734003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitsManagement: {fileID: 7119247070606331095}
---- !u!114 &7119247070606331095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715109760345805963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb2c3e067450d0948af1388bbdcd4e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  units: []
-  currentUnitIndex: 0
 --- !u!1 &3457696631363362980
 GameObject:
   m_ObjectHideFlags: 0
