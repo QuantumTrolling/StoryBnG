@@ -617,8 +617,10 @@ GameObject:
   - component: {fileID: 6906587610960563575}
   - component: {fileID: 1332513789048189732}
   - component: {fileID: 4093694760617646953}
+  - component: {fileID: 6608456576971807}
+  - component: {fileID: 9174119417985997702}
   m_Layer: 0
-  m_Name: Pasha
+  m_Name: PashaUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,6 +758,8 @@ MonoBehaviour:
   selection: {fileID: 1747377405551019784}
   statusPanel: {fileID: 4031288891262559015}
   statusIconPrefab: {fileID: 9152535223639472926, guid: 553c3cd8ecc0b1349ac4b905952cdf42, type: 3}
+  IconPrefab: {fileID: 3564345867876461043, guid: b169bb9f487324541af880064fe4a1f4, type: 3}
+  unitSelection: {fileID: 6608456576971807}
 --- !u!114 &4093694760617646953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +775,33 @@ MonoBehaviour:
   skillName: 
   cooldown: 0
   healAmount: 15
+--- !u!114 &6608456576971807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937782201623372913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa894e45d38c5b148928c2f2d3734003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitsManagement: {fileID: 9174119417985997702}
+--- !u!114 &9174119417985997702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937782201623372913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c3e067450d0948af1388bbdcd4e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  units: []
+  currentUnitIndex: 0
 --- !u!1 &7334668905498375003
 GameObject:
   m_ObjectHideFlags: 0

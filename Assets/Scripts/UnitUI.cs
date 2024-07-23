@@ -17,6 +17,8 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private GameObject selection;
     [SerializeField] private Transform statusPanel;
     [SerializeField] private GameObject statusIconPrefab;
+    [SerializeField] private GameObject IconPrefab;
+    [SerializeField] private UnitSelection unitSelection;
 
     private float maxHealth;
     private Dictionary<string, GameObject> statusIcons = new Dictionary<string, GameObject>();
@@ -95,6 +97,20 @@ public class UnitUI : MonoBehaviour
         }
     }
 
+    private void OnMouseDown()
+    {
+        if (GameManager.Instance.CurrentState == GameState.Preparation)
+        {
+            Debug.Log(unit);
+            unitSelection.RemoveUnit(unit);
+            unitSelection.PlaceUnitIcon(IconPrefab);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            return;
+        }
+    }
 
     public void Update()
     {

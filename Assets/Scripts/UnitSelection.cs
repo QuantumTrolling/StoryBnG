@@ -7,38 +7,56 @@ public class UnitSelection : MonoBehaviour
     public static List<Unit> selectedUnits = new List<Unit>();
     [SerializeField] private UnitsManagement unitsManagement;
     public static int MaxUnitsSelected = 3;
+    private GameObject Canvas;
 
-    public void PlaceUnit(GameObject unitPrefab, RectTransform dropArea)
+    private void Start()
     {
-        // Удаляем существующую иконку, если она уже перемещена
-        foreach (Transform child in dropArea)
-        {
-            Destroy(child.gameObject);
-        }
+        Canvas = GameObject.Find("Canvas");
+    }
 
-        // Создаем новый объект
-        GameObject newUnit = Instantiate(unitPrefab, dropArea);
-        RectTransform newUnitRectTransform = newUnit.GetComponent<RectTransform>();
-        if (newUnitRectTransform != null)
+    public void PlaceUnit(GameObject unitPrefab, Transform dropArea, Vector2 coordinates)
+    {
+        Vector2 realCoordinates = Camera.main.ScreenToWorldPoint(coordinates);
+        GameObject newUnit = Instantiate(unitPrefab, Canvas.transform);
+        newUnit.transform.position = realCoordinates;
+        Transform newUnitTransform = newUnit.GetComponent<Transform>();
+        if (newUnitTransform != null)
         {
-            newUnitRectTransform.anchoredPosition = Vector2.zero;
-            newUnitRectTransform.localScale = Vector3.one;
+            newUnitTransform.localScale = new Vector3(216, 216, 216);
         }
-
-        // Добавляем новый объект в список выбранных юнитов и управление юнитами
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
         selectedUnits.Add(newUnitComponent);
         unitsManagement.AddUnit(newUnitComponent);
     }
 
-    public void RemoveUnit(GameObject unit)
+    public void PlaceUnitIcon(GameObject unitIconPrefab)
     {
-        Unit unitComponent = unit.GetComponent<Unit>();
-        if (unitComponent != null)
+        GameObject[] prefabPanels = GameObject.FindGameObjectsWithTag("PanelIcon");
+
+        foreach (GameObject panel in prefabPanels)
         {
-            selectedUnits.Remove(unitComponent);
-            unitsManagement.RemoveUnit(unitComponent);
+            if (panel.transform.childCount == 0)
+            {
+                GameObject newUnitIcon = Instantiate(unitIconPrefab, panel.transform);
+                RectTransform newUnitIconRectTransform = newUnitIcon.GetComponent<RectTransform>();
+                
+                    newUnitIconRectTransform.anchoredPosition = Vector2.zero;
+                    newUnitIconRectTransform.localScale = Vector3.one;
+                
+                return;
+            }
         }
+    }
+
+    public bool IsSlotFree(Transform dropArea)
+    {
+        return dropArea.childCount == 0;
+    }
+
+    public void RemoveUnit(Unit unit)
+    {
+            selectedUnits.Remove(unit);
+            unitsManagement.RemoveUnit(unit);
     }
 
     public static bool IsAllUnitsSelected()
