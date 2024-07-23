@@ -8,6 +8,7 @@ public class UnitSelection : MonoBehaviour
     [SerializeField] private UnitsManagement unitsManagement;
     public static int MaxUnitsSelected = 3;
     private GameObject Canvas;
+    private List<Transform> occupiedDropAreas = new List<Transform>();
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class UnitSelection : MonoBehaviour
         Vector2 realCoordinates = Camera.main.ScreenToWorldPoint(coordinates);
         GameObject newUnit = Instantiate(unitPrefab, Canvas.transform);
         newUnit.transform.position = realCoordinates;
+        newUnit.GetComponent<UnitUI>().OccupiedArea = dropArea;
         Transform newUnitTransform = newUnit.GetComponent<Transform>();
         if (newUnitTransform != null)
         {
@@ -27,11 +29,18 @@ public class UnitSelection : MonoBehaviour
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
         selectedUnits.Add(newUnitComponent);
         unitsManagement.AddUnit(newUnitComponent);
+        if (!occupiedDropAreas.Contains(dropArea))
+        {
+            occupiedDropAreas.Add(dropArea);
+        }
     }
 
     public void PlaceUnitIcon(GameObject unitIconPrefab)
     {
         GameObject[] prefabPanels = GameObject.FindGameObjectsWithTag("PanelIcon");
+
+        // Сортируем панели по Y-координате
+        System.Array.Sort(prefabPanels, (panel1, panel2) => panel2.transform.position.y.CompareTo(panel1.transform.position.y));
 
         foreach (GameObject panel in prefabPanels)
         {
@@ -39,10 +48,11 @@ public class UnitSelection : MonoBehaviour
             {
                 GameObject newUnitIcon = Instantiate(unitIconPrefab, panel.transform);
                 RectTransform newUnitIconRectTransform = newUnitIcon.GetComponent<RectTransform>();
-                
-                    newUnitIconRectTransform.anchoredPosition = Vector2.zero;
-                    newUnitIconRectTransform.localScale = Vector3.one;
-                
+                newUnitIconRectTransform.anchoredPosition = Vector2.zero;
+                newUnitIconRectTransform.localScale = Vector3.one;
+                newUnitIconRectTransform.anchorMin = new Vector2(0, 0);
+                newUnitIconRectTransform.anchorMax = new Vector2(0, 0);
+                newUnitIconRectTransform.pivot = new Vector2(0, 0);
                 return;
             }
         }
@@ -50,13 +60,17 @@ public class UnitSelection : MonoBehaviour
 
     public bool IsSlotFree(Transform dropArea)
     {
-        return dropArea.childCount == 0;
+        return !occupiedDropAreas.Contains(dropArea);
     }
 
-    public void RemoveUnit(Unit unit)
+    public void RemoveUnit(Unit unit, Transform dropArea)
     {
-            selectedUnits.Remove(unit);
-            unitsManagement.RemoveUnit(unit);
+        selectedUnits.Remove(unit);
+        unitsManagement.RemoveUnit(unit);
+        if (occupiedDropAreas.Contains(dropArea))
+        {
+            occupiedDropAreas.Remove(dropArea);
+        }
     }
 
     public static bool IsAllUnitsSelected()

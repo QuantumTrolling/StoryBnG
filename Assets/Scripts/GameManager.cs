@@ -11,6 +11,8 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField] private UIManager uiManager;
     
     public static GameManager Instance { get; private set; }
     public GameState CurrentState { get; private set; }
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
         if (UnitSelection.IsAllUnitsSelected())
         {
             CurrentState = GameState.Battle;
+            uiManager.DestroyPreparationUI();
+            UnitsManagement.StartScript();
         }
         else
         {

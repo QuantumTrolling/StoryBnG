@@ -20,7 +20,7 @@ public class Cursor : MonoBehaviour
         Debug.Log(LastUnit);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.TryGetComponent(out UnitUI unitUI)){
-            Unit currentUnit = unitsManagement.units[unitsManagement.currentUnitIndex];
+            Unit currentUnit = UnitsManagement.units[unitsManagement.currentUnitIndex];
             if (LastUnitUI!=null && LastUnitUI!=unitUI){
                 currentUnit.GetComponent<UnitUI>().UnitUnClickSkills();
                 LastUnitUI.UnitUnClick();

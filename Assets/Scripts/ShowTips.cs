@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/*
 public class ShowTips : MonoBehaviour
 {
     [SerializeField] GameObject tips;
@@ -24,3 +25,4 @@ public class ShowTips : MonoBehaviour
     }
 
 }
+*/

@@ -12,11 +12,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public GameObject unitPrefab;
     public List<RectTransform> dropAreas;
     public UnitSelection unitSelection;
+    private Vector2 originalPosition;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        originalPosition = transform.position;
     }
 
     private void Start()
@@ -37,10 +39,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentState == GameState.Battle)
-        {
-            return;
-        }
         rectTransform.anchoredPosition += eventData.delta / canvasGroup.transform.localScale.x;
     }
 
@@ -52,10 +50,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentState == GameState.Battle)
-        {
-            return;
-        }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
@@ -63,15 +57,21 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(dropArea, Input.mousePosition, Camera.main))
             {
-                unitSelection.PlaceUnit(unitPrefab, dropArea, eventData.position);
-                if (this.gameObject.name.Contains("Icon")) {
-                    Destroy(this.gameObject);
+                if (unitSelection.IsSlotFree(dropArea))
+                {
+                    unitSelection.PlaceUnit(unitPrefab, dropArea, eventData.position);
+                    if (this.gameObject.name.Contains("Icon"))
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    return;
                 }
-                return;
             }
         }
-        rectTransform.anchoredPosition = Vector2.zero;
+        rectTransform.anchoredPosition = originalPosition;
+        rectTransform.pivot = new Vector2(0, 0);
     }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {

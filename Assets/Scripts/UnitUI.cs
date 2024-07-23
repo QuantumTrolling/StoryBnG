@@ -20,6 +20,10 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private GameObject IconPrefab;
     [SerializeField] private UnitSelection unitSelection;
 
+    //объекты до входа в бой
+    public Transform OccupiedArea;
+
+
     private float maxHealth;
     private Dictionary<string, GameObject> statusIcons = new Dictionary<string, GameObject>();
 
@@ -102,7 +106,7 @@ public class UnitUI : MonoBehaviour
         if (GameManager.Instance.CurrentState == GameState.Preparation)
         {
             Debug.Log(unit);
-            unitSelection.RemoveUnit(unit);
+            unitSelection.RemoveUnit(unit, OccupiedArea);
             unitSelection.PlaceUnitIcon(IconPrefab);
             Destroy(this.gameObject);
         }

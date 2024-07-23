@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UnitsManagement : MonoBehaviour
 {
-    public List<Unit> units = new List<Unit>();
-    public Unit CurrentUnit => units[currentUnitIndex];
+    public static List<Unit> units = new List<Unit>();
+    public Unit CurrentUnit => units.Count > 0 && currentUnitIndex >= 0 && currentUnitIndex < units.Count ? units[currentUnitIndex] : null;
     public int currentUnitIndex = 0;
 
     void Start()
@@ -16,25 +16,27 @@ public class UnitsManagement : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.CurrentState == GameState.Preparation) { return; }
-        if (GameManager.Instance.CurrentState == GameState.Battle) { StartScript(); }
+
+        if (units.Count == 0 || currentUnitIndex < 0 || currentUnitIndex >= units.Count) { return; }
+
         if (units[currentUnitIndex].CurrentHealth <= 0)
         {
             NextTurn();
         }
     }
 
-    public void StartScript()
+    public static void StartScript()
     {
         SortUnitsBySpeed();
         SetTurnOrder();
     }
 
-    private void SortUnitsBySpeed()
+    private static void SortUnitsBySpeed()
     {
         units.Sort((a, b) => b.Speed.CompareTo(a.Speed));
     }
 
-    private void SetTurnOrder()
+    private static void SetTurnOrder()
     {
         for (int i = 0; i < units.Count; i++)
         {
@@ -44,6 +46,8 @@ public class UnitsManagement : MonoBehaviour
 
     public void NextTurn()
     {
+        if (units.Count == 0) { return; }
+
         units[currentUnitIndex].SetTurn(units.Count);
         for (int i = 0; i < units.Count; i++)
         {
@@ -53,6 +57,8 @@ public class UnitsManagement : MonoBehaviour
             }
         }
         currentUnitIndex = units.FindIndex(unit => unit.Turn == 1);
+
+        if (currentUnitIndex < 0 || currentUnitIndex >= units.Count) { return; }
 
         if (units[currentUnitIndex].IsEnemy)
         {
