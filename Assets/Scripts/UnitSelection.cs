@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UnitSelection : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class UnitSelection : MonoBehaviour
     public List<Unit> selectedUnits = new List<Unit>();
     public int MaxUnitsSelected = 3;
     private GameObject Canvas;
+    public GameObject SkillBox;
     public List<Transform> occupiedDropAreas = new List<Transform>();
 
     private void Awake()
@@ -60,6 +63,7 @@ public class UnitSelection : MonoBehaviour
         if (newUnitComponent != null)
         {
             selectedUnits.Add(newUnitComponent);
+            unitUI.skills.transform.position = SkillBox.transform.position;
             UnitsManagement.Instance.AddUnit(newUnitComponent);
         }
         else
@@ -83,7 +87,7 @@ public class UnitSelection : MonoBehaviour
 
         GameObject[] prefabPanels = GameObject.FindGameObjectsWithTag("PanelIcon");
 
-        // Сортируем панели по Y-координате
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Y-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         System.Array.Sort(prefabPanels, (panel1, panel2) => panel2.transform.position.y.CompareTo(panel1.transform.position.y));
 
         foreach (GameObject panel in prefabPanels)

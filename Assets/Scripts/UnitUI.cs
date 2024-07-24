@@ -9,14 +9,14 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private Unit unit;
     [SerializeField] private TMP_Text textTurn;
     [SerializeField] private TMP_Text textHp;
-    [SerializeField] private GameObject skills;
+    [SerializeField] public GameObject skills;
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject selection;
     [SerializeField] private Transform statusPanel;
     [SerializeField] private GameObject statusIconPrefab;
     [SerializeField] private GameObject IconPrefab;
 
-    //объекты до входа в бой
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
     public Transform OccupiedArea;
 
     private float maxHealth;

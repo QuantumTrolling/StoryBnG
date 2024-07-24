@@ -595,6 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedUnits: []
   MaxUnitsSelected: 3
+  SkillBox: {fileID: 1736104351}
   occupiedDropAreas: []
 --- !u!224 &386199086 stripped
 RectTransform:
@@ -659,7 +660,6 @@ MonoBehaviour:
   textHp: {fileID: 109134018}
   skills: {fileID: 603556866}
   healthBar: {fileID: 1452517204}
-  unitsManagement: {fileID: 0}
   selection: {fileID: 1268253077}
   statusPanel: {fileID: 822325077}
   statusIconPrefab: {fileID: 9152535223639472926, guid: 553c3cd8ecc0b1349ac4b905952cdf42, type: 3}
@@ -3815,6 +3815,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045883944}
   m_CullTransparentMesh: 1
+--- !u!1001 &1048883916
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1093886909509029196, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093886909509029196, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093886909509029196, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6367561
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.18471369
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9719.999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686603601079244129, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675817023207768475, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
+      propertyPath: m_Name
+      value: DenisUnit
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dfa50021e2eb5e242a8096501a0497f7, type: 3}
 --- !u!1 &1099887828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,8 +4773,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 475.85474, y: -353}
-  m_SizeDelta: {x: 914.69, y: 235.8}
+  m_AnchoredPosition: {x: 475.8545, y: -353}
+  m_SizeDelta: {x: 914.68945, y: 235.79999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736104353
 MonoBehaviour:
@@ -5842,3 +5911,4 @@ SceneRoots:
   - {fileID: 2130681596}
   - {fileID: 846848594}
   - {fileID: 1673037765}
+  - {fileID: 1048883916}
