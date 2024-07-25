@@ -9,7 +9,6 @@ public class UnitSelection : MonoBehaviour
     public static UnitSelection Instance { get; private set; }
     public List<Unit> selectedUnits = new List<Unit>();
     public int MaxUnitsSelected = 3;
-    private GameObject Canvas;
     public GameObject SkillBox;
     public List<Transform> occupiedDropAreas = new List<Transform>();
 
@@ -28,7 +27,7 @@ public class UnitSelection : MonoBehaviour
 
     private void Start()
     {
-        Canvas = GameObject.Find("Canvas");
+        
     }
 
     public void PlaceUnit(GameObject unitPrefab, Transform dropArea, Vector2 coordinates)
@@ -40,9 +39,8 @@ public class UnitSelection : MonoBehaviour
         }
 
         Vector2 realCoordinates = Camera.main.ScreenToWorldPoint(coordinates);
-        GameObject newUnit = Instantiate(unitPrefab, Canvas.transform);
+        GameObject newUnit = Instantiate(unitPrefab, realCoordinates, Quaternion.identity);
         newUnit.transform.position = realCoordinates;
-
         UnitUI unitUI = newUnit.GetComponent<UnitUI>();
         if (unitUI != null)
         {
@@ -56,7 +54,7 @@ public class UnitSelection : MonoBehaviour
         Transform newUnitTransform = newUnit.GetComponent<Transform>();
         if (newUnitTransform != null)
         {
-            newUnitTransform.localScale = new Vector3(216, 216, 216);
+            newUnitTransform.localScale = Vector3.one*2;
         }
 
         Unit newUnitComponent = newUnit.GetComponent<Unit>();

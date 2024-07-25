@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private int speed;
     [SerializeField] private Skill skill;
 
+    private Camera mainCamera;
     private List<string> statuses = new List<string>();
     private float currentHealth;
     private int turn;
@@ -26,6 +28,12 @@ public class Unit : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        mainCamera = Camera.main;
+    }
+
+    private void Update()
+    {
+       
     }
 
     public void TakeDamage(float damage)
