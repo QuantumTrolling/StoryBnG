@@ -623,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIInterfacePrefab: {fileID: 4505801219465279487, guid: f560a0a8b8fe72046aed6edf96075e84, type: 3}
   unit: {fileID: 451206590}
+  statusIconPrefab: {fileID: 0}
   skills: {fileID: 4505801219465279487, guid: f560a0a8b8fe72046aed6edf96075e84, type: 3}
   OccupiedArea: {fileID: 0}
 --- !u!1 &519420028

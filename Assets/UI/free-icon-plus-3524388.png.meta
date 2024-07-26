@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      free-icon-plus-3524388_0: 5032974325874103378
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
