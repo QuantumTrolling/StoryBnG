@@ -13,7 +13,7 @@ public class UnitUI : MonoBehaviour
     private GameObject UIInterface;
     private TMP_Text textTurn;
     private TMP_Text textHp;
-    public GameObject skills;
+    public Button skills;
     private Image healthBar;
     private GameObject selection;
     private Transform statusPanel;
@@ -34,7 +34,6 @@ public class UnitUI : MonoBehaviour
         // Получение ссылок на дочерние объекты интерфейса
         textTurn = UIInterface.transform.Find("TurnIcon/TurnText").GetComponent<TMP_Text>();
         textHp = UIInterface.transform.Find("HealthBar/HealthText").GetComponent<TMP_Text>();
-        skills = UIInterface.transform.Find("Skills").gameObject;
         healthBar = UIInterface.transform.Find("HealthBar").GetComponent<Image>();
         selection = UIInterface.transform.Find("Contours").gameObject;
         statusPanel = UIInterface.transform.Find("StatusPanel");
@@ -54,7 +53,7 @@ public class UnitUI : MonoBehaviour
     {
         if (!unit.IsEnemy)
         {
-            skills.SetActive(true);
+            skills.enabled = true;
         }
     }
 
@@ -73,13 +72,14 @@ public class UnitUI : MonoBehaviour
         selection.SetActive(false);
         if (!unit.IsEnemy)
         {
-            skills.SetActive(false);
+            skills.enabled = false;
         }
     }
 
     public void UnitOnSkillButtonClick()
     {
-        if (UnitsManagement.Instance.CurrentUnit == unit)
+        Debug.Log(UnitsManagement.Instance.CurrentUnit);
+        if (UnitsManagement.Instance.CurrentUnit.name.Contains(unit.name))
         {
             Unit target = Cursor.LastUnit;
             if (target != null)

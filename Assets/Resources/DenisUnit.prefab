@@ -158,5 +158,5 @@ MonoBehaviour:
   UIInterfacePrefab: {fileID: 4505801219465279487, guid: f560a0a8b8fe72046aed6edf96075e84, type: 3}
   unit: {fileID: 4682073821623955581}
   statusIconPrefab: {fileID: 7534246385275615534, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
-  skills: {fileID: 4505801219465279487, guid: f560a0a8b8fe72046aed6edf96075e84, type: 3}
+  skills: {fileID: 5293296385365125926, guid: 774c386a729bf5449af7b0f2659eb2ec, type: 3}
   OccupiedArea: {fileID: 0}

@@ -61,7 +61,7 @@ public class UnitSelection : MonoBehaviour
         if (newUnitComponent != null)
         {
             selectedUnits.Add(newUnitComponent);
-            unitUI.skills.transform.position = SkillBox.transform.position;
+            //unitUI.skills.transform.position = SkillBox.transform.position;
             UnitsManagement.Instance.AddUnit(newUnitComponent);
         }
         else
