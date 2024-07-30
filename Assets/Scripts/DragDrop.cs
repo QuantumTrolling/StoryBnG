@@ -37,7 +37,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentState == GameState.Battle)
+        if (GameManager.Instance.CurrentState == GameState.Battle || unitPrefab.GetComponent<Unit>().IsEnemy)
         {
             return;
         }
@@ -53,7 +53,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentState == GameState.Battle)
+        if (GameManager.Instance.CurrentState == GameState.Battle || unitPrefab.GetComponent<Unit>().IsEnemy)
         {
             return;
         }

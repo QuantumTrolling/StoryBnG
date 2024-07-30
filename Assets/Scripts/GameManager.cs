@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     
     public static GameManager Instance { get; private set; }
     public GameState CurrentState { get; private set; }
+    [SerializeField] private GameObject[] enemies;
 
     private void Awake()
     {
@@ -33,6 +34,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentState = GameState.Preparation;
+        foreach (var enemy in enemies)
+        {
+            Instantiate(enemy, enemy.transform.position, Quaternion.identity);
+        }
     }
 
     public void StartBattle()
