@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6675817023207768475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6367561, y: 0.18471369, z: -9719.999}
+  m_LocalPosition: {x: -1.762422, y: 1.2403473, z: -9719.999}
   m_LocalScale: {x: 175.90607, y: 175.90607, z: 175.90607}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -159,4 +159,5 @@ MonoBehaviour:
   unit: {fileID: 4682073821623955581}
   statusIconPrefab: {fileID: 7534246385275615534, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
   skills: {fileID: 5293296385365125926, guid: 774c386a729bf5449af7b0f2659eb2ec, type: 3}
+  IconPrefab: {fileID: 7534246385275615534, guid: b6476390cc5c15640810b5b46f07b20b, type: 3}
   OccupiedArea: {fileID: 0}

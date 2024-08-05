@@ -158,4 +158,5 @@ MonoBehaviour:
   unit: {fileID: 6906587610960563575}
   statusIconPrefab: {fileID: 3564345867876461043, guid: b169bb9f487324541af880064fe4a1f4, type: 3}
   skills: {fileID: 5562292448427007080, guid: a209983738c891a4483c3ab7365c3c1a, type: 3}
+  IconPrefab: {fileID: 3564345867876461043, guid: b169bb9f487324541af880064fe4a1f4, type: 3}
   OccupiedArea: {fileID: 0}

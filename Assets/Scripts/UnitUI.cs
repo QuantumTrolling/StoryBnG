@@ -18,7 +18,7 @@ public class UnitUI : MonoBehaviour
     private GameObject selection;
     private Transform statusPanel;
     
-    private GameObject IconPrefab;
+    public GameObject IconPrefab;
 
     // Ссылка на область, занимаемую юнитом
     public Transform OccupiedArea;
@@ -171,5 +171,8 @@ public class UnitUI : MonoBehaviour
         textHp.text = displayHealth.ToString();
         textTurn.text = unit.Turn.ToString();
         healthBar.fillAmount = unit.CurrentHealth / maxHealth;
+    }
+    private void OnDestroy() {
+        Destroy(UIInterface);
     }
 }

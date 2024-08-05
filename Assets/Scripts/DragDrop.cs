@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -67,6 +68,10 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
                 if (UnitSelection.Instance.IsSlotFree(dropArea))
                 {
                     UnitSelection.Instance.PlaceUnit(unitPrefab, dropArea, eventData.position);
+                    if(unitPrefab.TryGetComponent( out UnitUI unit)){
+                        Debug.Log("Yep, I've set it");
+                        unit.IconPrefab=this.gameObject;
+                    }
                     if (this.gameObject.name.Contains("Icon"))
                     {
                         Destroy(this.gameObject);
